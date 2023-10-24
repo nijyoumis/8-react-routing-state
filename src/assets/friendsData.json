@@ -1,0 +1,11 @@
+{
+  "users": [
+    { "userid": 0, "name": "유진", "profileMessage": "인마배기배기배기진스.." },
+    { "userid": 1, "name": "짱구", "profileMessage": "허허잇~" },
+    { "userid": 2, "name": "흰둥이", "profileMessage": "🐶🐶🐶" },
+    { "userid": 3, "name": "철수", "profileMessage": "📚📚📖📗" },
+    { "userid": 4, "name": "맹구", "profileMessage": "💦💦💦" },
+    { "userid": 5, "name": "유리", "profileMessage": "🐰🐰🐰🤛🤛" },
+    { "userid": 6, "name": "훈이", "profileMessage": "😥😥😥😭😭" }
+  ]
+}

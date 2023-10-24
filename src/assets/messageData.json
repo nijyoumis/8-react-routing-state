@@ -1,0 +1,52 @@
+{
+  "chattings": [
+    {
+      "roomId": 1,
+      "userName": "짱구",
+      "chats": [
+        { "userid": 1, "chat": "허허잇" },
+        { "userid": 0, "chat": "허허잇~~" }
+      ]
+    },
+    {
+      "roomId": 2,
+      "userName": "흰둥이",
+      "chats": [
+        { "userid": 2, "chat": "산책가줘잉" },
+        { "userid": 0, "chat": "레쭈고" }
+      ]
+    },
+    {
+      "roomId": 3,
+      "userName": "철수",
+      "chats": [
+        { "userid": 3, "chat": "공부좀해" },
+        { "userid": 0, "chat": "웅.." }
+      ]
+    },
+    {
+      "roomId": 4,
+      "userName": "맹구",
+      "chats": [
+        { "userid": 4, "chat": "커다란 자갈돌은" },
+        { "userid": 0, "chat": "짱돌~짱돌~" }
+      ]
+    },
+    {
+      "roomId": 5,
+      "userName": "유리",
+      "chats": [
+        { "userid": 5, "chat": "부서버린다" },
+        { "userid": 0, "chat": "꺅" }
+      ]
+    },
+    {
+      "roomId": 6,
+      "userName": "훈이",
+      "chats": [
+        { "userid": 6, "chat": "뿌엥" },
+        { "userid": 0, "chat": "😓😕" }
+      ]
+    }
+  ]
+}
