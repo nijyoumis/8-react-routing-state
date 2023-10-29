@@ -8,6 +8,14 @@ import Chats from "./pages/Chats";
 import ChatRoom from "./pages/ChatRoom";
 import Settings from "./pages/Settings";
 
+const Wrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Container = styled.div`
   border: none;
   width: 340px;
@@ -17,22 +25,23 @@ const Container = styled.div`
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
 `;
 
 function App() {
   return (
-    <Container>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/chats" element={<Chats />} />
-          <Route path="/chatRoom/:roomid" element={<ChatRoom />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
-      </BrowserRouter>
-    </Container>
+    <Wrapper>
+      <Container>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/friends" element={<Friends />} />
+            <Route path="/chats" element={<Chats />} />
+            <Route path="/chatRoom/:roomid" element={<ChatRoom />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </BrowserRouter>
+      </Container>
+    </Wrapper>
   );
 }
 

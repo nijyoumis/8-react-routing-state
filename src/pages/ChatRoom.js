@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import styled from "styled-components";
 import { useState } from "react";
-import useToggle from "../hooks/useToggle";
 import MessageList from "../components/MessageList";
 import { useLocation } from "react-router-dom";
+import { isToUser, owner } from "../atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import messageData from "../assets/messageData.json";
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,27 +44,34 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
-const ChatRoom = (props) => {
-  const { id } = useParams();
+const ChatRoom = () => {
+  const { roomid } = useParams();
   const [chats, setChats] = useState([]);
   const [newChat, setNewChat] = useState("");
   const { state } = useLocation();
-  // 해당 id의 chattings 정보를 가져오기
-  // ㄱ-;;
-  // 토글 기능 나 아니면 친구로 바꿔야하고
+  const [userState, setUserState] = useRecoilState(isToUser);
+  const ownerName = useRecoilValue(owner);
 
-  const [receiver, toggle] = useToggle("Maru");
+  const allRooms = messageData.chattings;
+  const selectedRoom = allRooms[roomid - 1];
+
+  useEffect(() => {
+    setUserState(true);
+  }, []);
+
+  // 새 메시지 작성시 json 파일 업데이트
+  // lastChat 설정
 
   const addChat = (e) => {
     e.preventDefault();
     if (newChat !== "") {
-      const sender = receiver === "Maru" ? "Woorie" : "Maru";
+      const sender = userState ? 0 : roomid;
       setChats([
         ...chats,
         {
-          author: sender,
-          text: newChat,
-          timeStamp: new Date(),
+          userid: sender,
+          chat: newChat,
+          time: new Date(),
         },
       ]);
       setNewChat("");
@@ -70,9 +79,13 @@ const ChatRoom = (props) => {
   };
   return (
     <Wrapper>
-      <Header headText={state.userName} leftChild={"<"} rightChild={"⁝"} />
+      <Header
+        headText={userState ? state.userName : ownerName}
+        leftChild={"<"}
+        rightChild={"⁝"}
+      />
       <TempDiv>
-        <MessageList roomid={id}></MessageList>
+        <MessageList roomid={roomid} userName={state.userName}></MessageList>
       </TempDiv>
       <InputForm onSubmit={addChat} className="input">
         <MessageInputBox

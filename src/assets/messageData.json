@@ -4,48 +4,48 @@
       "roomId": 1,
       "userName": "짱구",
       "chats": [
-        { "userid": 1, "chat": "허허잇" },
-        { "userid": 0, "chat": "허허잇~~" }
+        { "userid": 1, "chat": "허허잇", "time": 1643176169 },
+        { "userid": 0, "chat": "허허잇~~", "time": 1643176229 }
       ]
     },
     {
       "roomId": 2,
       "userName": "흰둥이",
       "chats": [
-        { "userid": 2, "chat": "산책가줘잉" },
-        { "userid": 0, "chat": "레쭈고" }
+        { "userid": 2, "chat": "산책가줘잉", "time": 1643210429 },
+        { "userid": 0, "chat": "레쭈고", "time": 1643210609 }
       ]
     },
     {
       "roomId": 3,
       "userName": "철수",
       "chats": [
-        { "userid": 3, "chat": "공부좀해" },
-        { "userid": 0, "chat": "웅.." }
+        { "userid": 3, "chat": "공부좀해", "time": 1643037809 },
+        { "userid": 0, "chat": "웅..", "time": 1643042069 }
       ]
     },
     {
       "roomId": 4,
       "userName": "맹구",
       "chats": [
-        { "userid": 4, "chat": "커다란 자갈돌은" },
-        { "userid": 0, "chat": "짱돌~짱돌~" }
+        { "userid": 4, "chat": "커다란 자갈돌은", "time": 1643387669 },
+        { "userid": 0, "chat": "짱돌~짱돌~", "time": 1643387670 }
       ]
     },
     {
       "roomId": 5,
       "userName": "유리",
       "chats": [
-        { "userid": 5, "chat": "부서버린다" },
-        { "userid": 0, "chat": "꺅" }
+        { "userid": 5, "chat": "부서버린다", "time": 1643474070 },
+        { "userid": 0, "chat": "꺅", "time": 1643474071 }
       ]
     },
     {
       "roomId": 6,
       "userName": "훈이",
       "chats": [
-        { "userid": 6, "chat": "뿌엥" },
-        { "userid": 0, "chat": "😓😕" }
+        { "userid": 6, "chat": "뿌엥", "time": 1643646870 },
+        { "userid": 0, "chat": "😓😕", "time": 1643646871 }
       ]
     }
   ]

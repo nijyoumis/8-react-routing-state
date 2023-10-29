@@ -20,6 +20,13 @@ const TempDiv = styled.div`
 
 const Chats = () => {
   const navigate = useNavigate();
+
+  const getLastChat = (userName) => {
+    const filteredChat = messageData.find(
+      (chatRoom) => chatRoom.userName === userName
+    ).chats;
+  };
+
   return (
     <Wrapper>
       <Header headText={"MyChats"} leftChild={"<"} rightChild={"⁝"} />

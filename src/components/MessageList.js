@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import messageData from "../assets/messageData.json";
 import { useRecoilValue } from "recoil";
-import { owner } from "../atom";
-import Chats from "../pages/Chats";
+import { owner, isToUser } from "../atom";
 
 const ChattingList = styled.div`
   display: flex;
@@ -68,39 +67,53 @@ const UserImg = styled.img`
   margin: 8px 0px 0px 0px;
 `;
 
-const MessageList = ({ id }) => {
+const MessageList = ({ roomid, userName }) => {
   const sender = useRecoilValue(owner);
+  const allRooms = messageData.chattings;
+  const selectedRoom = allRooms[roomid - 1];
+  const toUser = useRecoilValue(isToUser);
+
   return (
     <ChattingList>
-      {messageData.chattings.map(
-        (chat) =>
-          chat.roomId === id &&
-          chat.chats.map(() => (
-            <MessageWrapper key={id} sender={sender} receiver={id}>
-              <Time>
-                {chat.timeStamp.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: false,
-                })}
-              </Time>
-              <Content>
-                <Author sender={sender} receiver={chat.userName}>
-                  {sender}
-                </Author>
-                <Text sender={sender} receiver={chat.userName}>
-                  {chat.chats}
-                </Text>
-              </Content>
-              <UserImg
-                alt="User Profile"
-                sender={sender}
-                receiver={chat.userName}
-                src={`${process.env.PUBLIC_URL}/img/${id}.jpg`}
-              ></UserImg>
-            </MessageWrapper>
-          ))
-      )}
+      {selectedRoom.chats.map((chat) => (
+        <MessageWrapper
+          key={chat.time}
+          sender={chat.userid === 0 ? sender : userName}
+          receiver={toUser ? userName : sender}
+        >
+          <Time>
+            {new Date(chat.time).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            })}
+          </Time>
+          <Content>
+            <Author
+              sender={chat.userid === 0 ? sender : userName}
+              receiver={toUser ? userName : sender}
+            >
+              {chat.userid === 0 ? sender : userName}
+            </Author>
+            <Text
+              sender={chat.userid === 0 ? sender : userName}
+              receiver={toUser ? userName : sender}
+            >
+              {chat.chat}
+            </Text>
+          </Content>
+          <UserImg
+            alt="User Profile"
+            sender={chat.userid === 0 ? sender : userName}
+            receiver={toUser ? userName : sender}
+            src={
+              chat.userid === 0
+                ? `${process.env.PUBLIC_URL}/img/0.jpg`
+                : `${process.env.PUBLIC_URL}/img/${roomid}.jpg`
+            }
+          ></UserImg>
+        </MessageWrapper>
+      ))}
     </ChattingList>
   );
 };

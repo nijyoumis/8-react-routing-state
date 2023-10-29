@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { isToUser } from "../atom";
+import { useRecoilState } from "recoil";
 
 const StyledHeader = styled.header`
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 7px;
   display: flex;
   align-items: center;
 `;
@@ -34,7 +36,14 @@ const HeaderText = styled.span`
 `;
 
 const Header = ({ headText, leftChild, rightChild }) => {
+  const [userState, setUserState] = useRecoilState(isToUser);
+
   const navigate = useNavigate();
+
+  const handleToggle = () => {
+    setUserState(!userState);
+  };
+
   return (
     <StyledHeader>
       <LeftButton
@@ -44,7 +53,7 @@ const Header = ({ headText, leftChild, rightChild }) => {
       >
         {leftChild}
       </LeftButton>
-      <HeaderText>{headText}</HeaderText>
+      <HeaderText onClick={handleToggle}>{headText}</HeaderText>
       <RightButton>{rightChild}</RightButton>
     </StyledHeader>
   );
