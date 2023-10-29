@@ -5,11 +5,11 @@ const UserWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 320px;
-  padding: 10px 0 10px 0;
+  padding: 10px 0px 10px 0px;
   &:hover {
     background-color: white;
   }
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #a98b59;
   cursor: pointer;
 `;
 
@@ -37,6 +37,8 @@ const LastMessage = styled.div`
   color: gray;
   margin: 3px;
 `;
+const Time = styled.div``;
+// chats page에서 마지막 chat의 time 정보를 가져와야함.
 
 const ChatInfo = ({ name, message, id }) => {
   return (
@@ -46,6 +48,7 @@ const ChatInfo = ({ name, message, id }) => {
         <UserName>{name}</UserName>
         <LastMessage>{message}</LastMessage>
       </InfoWrapper>
+      <Time></Time>
     </UserWrapper>
   );
 };

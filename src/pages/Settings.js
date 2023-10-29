@@ -32,7 +32,7 @@ const NavigateButton = styled.button`
 `;
 const Settings = () => {
   const navigate = useNavigate();
-  const url = "https://youtu.be/rbUjSQPblBs?si=ZQBI0mzgdjygH-41";
+  const url = "https://youtu.be/wtHra9tFISY?si=vFC7LNKDO7-VPXXZ1";
   return (
     //logout button, a tag 써서 외부 링크로 보내기
     <Wrapper>
@@ -43,7 +43,7 @@ const Settings = () => {
             window.open(url);
           }}
         >
-          🎬📺
+          🎼🎵
         </NavigateButton>
         <NavigateButton
           onClick={() => {

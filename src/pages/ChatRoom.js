@@ -5,9 +5,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import MessageList from "../components/MessageList";
 import { useLocation } from "react-router-dom";
-import { isToUser, owner } from "../atom";
+import { isToUser, message, owner } from "../atom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import messageData from "../assets/messageData.json";
 
 const Wrapper = styled.div`
   display: flex;
@@ -46,34 +45,38 @@ const SubmitButton = styled.button`
 
 const ChatRoom = () => {
   const { roomid } = useParams();
-  const [chats, setChats] = useState([]);
   const [newChat, setNewChat] = useState("");
   const { state } = useLocation();
-  const [userState, setUserState] = useRecoilState(isToUser);
   const ownerName = useRecoilValue(owner);
+  const [userState, setUserState] = useRecoilState(isToUser);
+  const [chatData, setChatData] = useRecoilState(message);
 
-  const allRooms = messageData.chattings;
-  const selectedRoom = allRooms[roomid - 1];
+  const currChatRoom = chatData[roomid - 1].chats;
 
   useEffect(() => {
     setUserState(true);
   }, []);
 
-  // 새 메시지 작성시 json 파일 업데이트
-  // lastChat 설정
-
   const addChat = (e) => {
     e.preventDefault();
     if (newChat !== "") {
       const sender = userState ? 0 : roomid;
-      setChats([
-        ...chats,
-        {
-          userid: sender,
-          chat: newChat,
-          time: new Date(),
-        },
-      ]);
+      const newChatItem = {
+        userid: sender,
+        chat: newChat,
+        time: new Date(),
+      };
+      const updatedChatData = chatData.map((room, index) => {
+        if (index === roomid - 1) {
+          return {
+            ...room,
+            chats: [...room.chats, newChatItem],
+          };
+        } else {
+          return room;
+        }
+      });
+      setChatData(updatedChatData);
       setNewChat("");
     }
   };

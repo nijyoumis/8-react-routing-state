@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   height: 100vh;
   padding: 10px;
-  background-color: #d2e1ff;
+  background-color: #ffff96;
   border-radius: 16px;
 `;
 const TempDiv = styled.div`

@@ -2,50 +2,58 @@
   "chattings": [
     {
       "roomId": 1,
-      "userName": "짱구",
+      "userName": "Harry",
       "chats": [
-        { "userid": 1, "chat": "허허잇", "time": 1643176169 },
-        { "userid": 0, "chat": "허허잇~~", "time": 1643176229 }
+        { "userid": 1, "chat": "Not slytherin..!", "time": 1643176169 },
+        { "userid": 0, "chat": "Gryffindor!", "time": 1643176229 }
       ]
     },
     {
       "roomId": 2,
-      "userName": "흰둥이",
+      "userName": "Ron",
       "chats": [
-        { "userid": 2, "chat": "산책가줘잉", "time": 1643210429 },
-        { "userid": 0, "chat": "레쭈고", "time": 1643210609 }
+        { "userid": 2, "chat": "Bloody hell!", "time": 1643210429 },
+        { "userid": 0, "chat": "🫢🫢", "time": 1643210609 }
       ]
     },
     {
       "roomId": 3,
-      "userName": "철수",
+      "userName": "Hermione",
       "chats": [
-        { "userid": 3, "chat": "공부좀해", "time": 1643037809 },
-        { "userid": 0, "chat": "웅..", "time": 1643042069 }
+        { "userid": 0, "chat": "Wingardium Leviosar~🪶", "time": 1643042069 },
+        {
+          "userid": 3,
+          "chat": "It's Leviosa not Leviosar !!",
+          "time": 1643037809
+        }
       ]
     },
     {
       "roomId": 4,
-      "userName": "맹구",
+      "userName": "Severus",
       "chats": [
-        { "userid": 4, "chat": "커다란 자갈돌은", "time": 1643387669 },
-        { "userid": 0, "chat": "짱돌~짱돌~", "time": 1643387670 }
+        {
+          "userid": 4,
+          "chat": "Always...",
+          "time": 1643387669
+        },
+        { "userid": 0, "chat": "🦌😭", "time": 1643387670 }
       ]
     },
     {
       "roomId": 5,
-      "userName": "유리",
+      "userName": "Dobby",
       "chats": [
-        { "userid": 5, "chat": "부서버린다", "time": 1643474070 },
-        { "userid": 0, "chat": "꺅", "time": 1643474071 }
+        { "userid": 5, "chat": "Dobby is free", "time": 1643474070 },
+        { "userid": 0, "chat": "나도 free", "time": 1643474071 }
       ]
     },
     {
       "roomId": 6,
-      "userName": "훈이",
+      "userName": "Hagrid",
       "chats": [
-        { "userid": 6, "chat": "뿌엥", "time": 1643646870 },
-        { "userid": 0, "chat": "😓😕", "time": 1643646871 }
+        { "userid": 6, "chat": "HAPPEBIRTHDAE, HARRY", "time": 1643646870 },
+        { "userid": 0, "chat": "Happee Birth Dae~~", "time": 1643646871 }
       ]
     }
   ]

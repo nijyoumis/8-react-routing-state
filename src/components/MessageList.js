@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import messageData from "../assets/messageData.json";
 import { useRecoilValue } from "recoil";
-import { owner, isToUser } from "../atom";
+import { owner, isToUser, message } from "../atom";
 
 const ChattingList = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  padding: 15px;
   max-height: 560px;
+  padding-top: 5px;
   &::-webkit-scrollbar {
     width: 3px;
   }
@@ -25,6 +24,7 @@ const MessageWrapper = styled.div`
     props.sender === props.receiver ? "row-reverse" : "row"};
   align-self: ${(props) =>
     props.sender === props.receiver ? "flex-start" : "flex-end"};
+  margin-bottom: 9px;
 `;
 
 const Content = styled.div`
@@ -43,10 +43,11 @@ const Author = styled.div`
   align-self: ${(props) =>
     props.sender === props.receiver ? "flex-start" : "flex-end"};
   font-size: smaller;
-  margin: 0px 8px 0px 0px;
+  margin: 0px 8px 0px 8px;
 `;
 
 const Text = styled.div`
+  display: inline-block;
   font-size: smaller;
   background-color: ${(props) =>
     props.sender === props.receiver ? "#ffee00" : "#ffffff"};
@@ -56,22 +57,25 @@ const Text = styled.div`
       : "20px 0px 20px 20px"};
   margin: 8px 8px 0px 8px;
   padding: 8px;
+  max-width: 180px;
+  overflow-wrap: break-word; // 긴 단어에서 줄 바꿈허용
+  white-space: pre-line;
 `;
 
 const UserImg = styled.img`
   border: none;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
   margin: 8px 0px 0px 0px;
 `;
 
 const MessageList = ({ roomid, userName }) => {
   const sender = useRecoilValue(owner);
-  const allRooms = messageData.chattings;
-  const selectedRoom = allRooms[roomid - 1];
+  const chatData = useRecoilValue(message);
   const toUser = useRecoilValue(isToUser);
+  const selectedRoom = chatData[roomid - 1];
 
   return (
     <ChattingList>
