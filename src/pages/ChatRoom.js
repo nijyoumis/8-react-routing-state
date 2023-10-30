@@ -51,8 +51,6 @@ const ChatRoom = () => {
   const [userState, setUserState] = useRecoilState(isToUser);
   const [chatData, setChatData] = useRecoilState(message);
 
-  const currChatRoom = chatData[roomid - 1].chats;
-
   useEffect(() => {
     setUserState(true);
   }, []);

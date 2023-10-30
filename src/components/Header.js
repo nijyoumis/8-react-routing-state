@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { isToUser } from "../atom";
+import { isToUser, searchingState } from "../atom";
 import { useRecoilState } from "recoil";
 
 const StyledHeader = styled.header`
@@ -37,11 +37,15 @@ const HeaderText = styled.span`
 
 const Header = ({ headText, leftChild, rightChild }) => {
   const [userState, setUserState] = useRecoilState(isToUser);
+  const [searching, setSearching] = useRecoilState(searchingState);
 
   const navigate = useNavigate();
 
   const handleToggle = () => {
     setUserState(!userState);
+  };
+  const handleSearch = () => {
+    setSearching(!searching);
   };
 
   return (
@@ -54,7 +58,7 @@ const Header = ({ headText, leftChild, rightChild }) => {
         {leftChild}
       </LeftButton>
       <HeaderText onClick={handleToggle}>{headText}</HeaderText>
-      <RightButton>{rightChild}</RightButton>
+      <RightButton onClick={handleSearch}>{rightChild}</RightButton>
     </StyledHeader>
   );
 };

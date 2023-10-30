@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonFooter from "../components/ButtonFooter";
 import Header from "../components/Header";
 import styled from "styled-components";
-import friendsData from "../assets/friendsData.json";
 import UserInfo from "../components/UserInfo";
+import SearchUser from "../components/SearchUser";
 import ProfileModal from "../components/ProfileModal";
+import { userInfo, isFriends, searchingState } from "../atom";
+import { useRecoilValue, useRecoilState } from "recoil";
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,6 +27,16 @@ const ProfileDiv = styled.h2`
 const Friends = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
+  const users = useRecoilValue(userInfo);
+  const [pageState, setPageState] = useRecoilState(isFriends);
+  const [isSearching, setIsSearching] = useRecoilState(searchingState);
+
+  useEffect(() => {
+    setPageState(true);
+    return () => {
+      setIsSearching(false);
+    };
+  }, []);
 
   const onClickProfile = (user) => {
     setIsModalOpen(true);
@@ -39,38 +51,51 @@ const Friends = () => {
       <Wrapper>
         <Header headText={"Friends"} leftChild={"<"} rightChild={"🔍"} />
         <TempDiv>
-          <ProfileDiv>My profile</ProfileDiv>
-          <div>
-            {friendsData.users.map(
-              (user) =>
-                user.userid === 0 && (
-                  <div key={user.userid} onClick={() => onClickProfile(user)}>
-                    <UserInfo
-                      key={user.userid}
-                      name={user.name}
-                      status={user.profileMessage}
-                      id={user.userid}
-                    ></UserInfo>
-                  </div>
-                )
+          <>{pageState && isSearching && <SearchUser></SearchUser>}</>
+          <>
+            {!isSearching && (
+              <>
+                <ProfileDiv>My profile</ProfileDiv>
+                <div>
+                  {users.map(
+                    (user) =>
+                      user.userid === 0 && (
+                        <div
+                          key={user.userid}
+                          onClick={() => onClickProfile(user)}
+                        >
+                          <UserInfo
+                            key={user.userid}
+                            name={user.name}
+                            status={user.profileMessage}
+                            id={user.userid}
+                          ></UserInfo>
+                        </div>
+                      )
+                  )}
+                </div>
+                <ProfileDiv>Friends</ProfileDiv>
+                <div>
+                  {users.map(
+                    (user) =>
+                      user.userid !== 0 && (
+                        <div
+                          key={user.userid}
+                          onClick={() => onClickProfile(user)}
+                        >
+                          <UserInfo
+                            key={user.userid}
+                            name={user.name}
+                            status={user.profileMessage}
+                            id={user.userid}
+                          ></UserInfo>
+                        </div>
+                      )
+                  )}
+                </div>
+              </>
             )}
-          </div>
-          <ProfileDiv>Friends</ProfileDiv>
-          <div>
-            {friendsData.users.map(
-              (user) =>
-                user.userid !== 0 && (
-                  <div key={user.userid} onClick={() => onClickProfile(user)}>
-                    <UserInfo
-                      key={user.userid}
-                      name={user.name}
-                      status={user.profileMessage}
-                      id={user.userid}
-                    ></UserInfo>
-                  </div>
-                )
-            )}
-          </div>
+          </>
         </TempDiv>
         <ButtonFooter></ButtonFooter>
       </Wrapper>
