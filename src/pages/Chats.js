@@ -3,8 +3,9 @@ import Header from "../components/Header";
 import ButtonFooter from "../components/ButtonFooter";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import messageData from "../assets/messageData.json";
 import ChatInfo from "../components/ChatInfo";
+import { useRecoilValue } from "recoil";
+import { message } from "../atom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,19 +21,14 @@ const TempDiv = styled.div`
 
 const Chats = () => {
   const navigate = useNavigate();
-
-  const getLastChat = (userName) => {
-    const filteredChat = messageData.find(
-      (chatRoom) => chatRoom.userName === userName
-    ).chats;
-  };
+  const chatData = useRecoilValue(message);
 
   return (
     <Wrapper>
-      <Header headText={"MyChats"} leftChild={"<"} rightChild={"⁝"} />
+      <Header headText={"My Chats"} leftChild={"<"} rightChild={"⁝"} />
       <TempDiv>
         <div>
-          {messageData.chattings.map((chats) => (
+          {chatData.map((chats) => (
             <div
               key={chats.roomId}
               onClick={() =>
@@ -44,7 +40,6 @@ const Chats = () => {
               <ChatInfo
                 key={chats.roomId}
                 name={chats.userName}
-                message={"마지막메시지"}
                 id={chats.roomId}
               ></ChatInfo>
             </div>

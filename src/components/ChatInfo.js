@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { message } from "../atom";
 
 const UserWrapper = styled.div`
   display: flex;
@@ -26,6 +28,7 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
+  width: 200px;
 `;
 
 const UserName = styled.div`
@@ -37,18 +40,34 @@ const LastMessage = styled.div`
   color: gray;
   margin: 3px;
 `;
-const Time = styled.div``;
+const Time = styled.div`
+  color: gray;
+  font-size: small;
+`;
 // chats page에서 마지막 chat의 time 정보를 가져와야함.
 
-const ChatInfo = ({ name, message, id }) => {
+const ChatInfo = ({ name, id }) => {
+  const chatData = useRecoilValue(message);
+
+  const getNewestMessage = (id) => {
+    const currRoom = chatData[id - 1];
+    const currRoomData = currRoom.chats;
+    const lastMessage = currRoomData[currRoomData.length - 1];
+    return [lastMessage.chat, lastMessage.time];
+  };
+  const info = getNewestMessage(id);
+  const lastText = info[0];
+  const dt = new Date(info[1]);
+  const lastTime = dt.getMonth() + 1 + "월 " + dt.getDate() + "일";
+
   return (
     <UserWrapper>
       <UserImg src={`${process.env.PUBLIC_URL}/img/${id}.jpg`} />
       <InfoWrapper>
         <UserName>{name}</UserName>
-        <LastMessage>{message}</LastMessage>
+        <LastMessage>{lastText}</LastMessage>
       </InfoWrapper>
-      <Time></Time>
+      <Time>{lastTime}</Time>
     </UserWrapper>
   );
 };
